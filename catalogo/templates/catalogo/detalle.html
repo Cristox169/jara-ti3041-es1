@@ -1,0 +1,22 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}{{ producto.nombre }} | CrisSteel{% endblock %}
+
+{% block content %}
+  <section class="container detail-shell">
+    <a class="back-link" href="{% url 'catalogo:lista' %}">← Volver al catálogo</a>
+    <article class="detail-card">
+      <div class="detail-mark">{{ producto.id|stringformat:'02d' }}</div>
+      <div>
+        <span class="eyebrow">{{ producto.categoria }}</span>
+        <h1>{{ producto.nombre }}</h1>
+        <p>{{ producto.descripcion }}</p>
+        <dl class="detail-data">
+          <div><dt>Precio</dt><dd>${{ producto.precio }}</dd></div>
+          <div><dt>Stock actual</dt><dd>{{ producto.stock }} unidades</dd></div>
+          <div><dt>Código</dt><dd>CRS-{{ producto.id|stringformat:'03d' }}</dd></div>
+        </dl>
+      </div>
+    </article>
+  </section>
+{% endblock %}

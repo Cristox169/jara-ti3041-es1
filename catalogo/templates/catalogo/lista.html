@@ -1,0 +1,37 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}Catálogo | CrisSteel{% endblock %}
+
+{% block content %}
+  <section class="catalog-hero">
+    <div class="container">
+      <span class="eyebrow">Catálogo online</span>
+      <h1>Todo para tu próximo proyecto.</h1>
+      <p>Explora herramientas, fijaciones, pinturas y materiales seleccionados para profesionales y maestros del hogar.</p>
+      <div class="catalog-count">{{ productos|length }} productos en catálogo</div>
+    </div>
+  </section>
+
+  <section class="container catalog-section" aria-labelledby="catalog-title">
+    <div class="section-heading">
+      <div><span class="eyebrow">Inventario</span><h2 id="catalog-title">Productos disponibles</h2></div>
+      <p>Selecciona una ficha para revisar su detalle.</p>
+    </div>
+
+    <div class="product-grid">
+      {% for producto in productos %}
+        <article class="product-card">
+          <div class="product-number">{{ producto.id|stringformat:'02d' }}</div>
+          <span class="category">{{ producto.categoria }}</span>
+          <h3>{{ producto.nombre }}</h3>
+          <p>{{ producto.descripcion }}</p>
+          <div class="card-meta">
+            <span><small>Precio</small><strong>${{ producto.precio }}</strong></span>
+            <span><small>Stock</small><strong>{{ producto.stock }} un.</strong></span>
+          </div>
+          <a class="detail-link" href="{% url 'catalogo:detalle' producto.id %}">Ver ficha <span aria-hidden="true">→</span></a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Catálogo online de Ferretería CrisSteel">
+  <title>{% block title %}CrisSteel{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'catalogo/estilos.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="{% url 'catalogo:lista' %}">
+        <span class="brand-icon" aria-hidden="true">CS</span>
+        <span><strong>CrisSteel</strong><small>Ferretería & soluciones</small></span>
+      </a>
+      <a class="nav-link" href="{% url 'catalogo:lista' %}">Ver catálogo</a>
+    </div>
+  </header>
+
+  <main>{% block content %}{% endblock %}</main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <span>CrisSteel · Herramientas para construir tus ideas</span>
+      <span>Catálogo demostrativo ES1</span>
+    </div>
+  </footer>
+</body>
+</html>
