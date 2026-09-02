@@ -26,3 +26,17 @@ class CatalogoViewsTests(TestCase):
         response = self.client.get(reverse('catalogo:detalle', args=[999]))
 
         self.assertEqual(response.status_code, 404)
+
+    def test_resumen_se_calcula_en_la_vista(self):
+        response = self.client.get(reverse('catalogo:lista'))
+
+        self.assertEqual(response.context['resumen']['total'], 40)
+        self.assertEqual(response.context['resumen']['con_stock'], 34)
+        self.assertEqual(response.context['resumen']['sin_stock'], 6)
+        self.assertEqual(response.context['resumen']['categorias'], 8)
+
+    def test_template_destaca_productos_sin_stock(self):
+        response = self.client.get(reverse('catalogo:lista'))
+
+        self.assertContains(response, 'product-card is-unavailable', count=6)
+        self.assertContains(response, 'Agotado', count=6)

@@ -4,18 +4,40 @@
 
 {% block content %}
   <section class="container detail-shell">
-    <a class="back-link" href="{% url 'catalogo:lista' %}">← Volver al catálogo</a>
-    <article class="detail-card">
-      <div class="detail-mark">{{ producto.id|stringformat:'02d' }}</div>
-      <div>
-        <span class="eyebrow">{{ producto.categoria }}</span>
+    <nav class="breadcrumb" aria-label="Migas de pan">
+      <a href="{% url 'catalogo:lista' %}">Catálogo</a><span aria-hidden="true">/</span><span>{{ producto.categoria_corta }}</span>
+    </nav>
+
+    <article class="detail-card glass-card{% if not producto.disponible %} is-unavailable{% endif %}">
+      <div class="detail-visual category-{{ producto.slug_categoria }}">
+        <span class="detail-code">CRS-{{ producto.id|stringformat:'03d' }}</span>
+        <span class="detail-icon">{% include 'catalogo/includes/icono_categoria.html' %}</span>
+        <span class="detail-category">{{ producto.categoria_corta }}</span>
+      </div>
+
+      <div class="detail-content">
+        {% if producto.disponible %}
+          <span class="stock-badge in-stock"><i></i> Disponible</span>
+        {% else %}
+          <span class="stock-badge out-stock"><i></i> Temporalmente agotado</span>
+        {% endif %}
+        <span class="eyebrow"><i></i> {{ producto.categoria }}</span>
         <h1>{{ producto.nombre }}</h1>
-        <p>{{ producto.descripcion }}</p>
+        <p class="detail-description">{{ producto.descripcion }}</p>
+
         <dl class="detail-data">
-          <div><dt>Precio</dt><dd>${{ producto.precio }}</dd></div>
+          <div><dt>Precio catálogo</dt><dd>{{ producto.precio_formateado }}</dd></div>
           <div><dt>Stock actual</dt><dd>{{ producto.stock }} unidades</dd></div>
-          <div><dt>Código</dt><dd>CRS-{{ producto.id|stringformat:'03d' }}</dd></div>
+          <div><dt>Código interno</dt><dd>CRS-{{ producto.id|stringformat:'03d' }}</dd></div>
         </dl>
+
+        <ul class="detail-points">
+          <li><span>✓</span> Información cargada desde JSON</li>
+          <li><span>✓</span> Precio expresado en pesos chilenos</li>
+          <li><span>✓</span> Disponibilidad actualizada en la ficha</li>
+        </ul>
+
+        <a class="button button-dark" href="{% url 'catalogo:lista' %}#catalogo"><span aria-hidden="true">←</span> Volver al catálogo</a>
       </div>
     </article>
   </section>

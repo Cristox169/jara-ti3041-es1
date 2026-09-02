@@ -52,9 +52,54 @@ PRODUCTOS_JSON = r'''
 
 PRODUCTOS = json.loads(PRODUCTOS_JSON)
 
+CATEGORIAS = {
+    'Herramientas eléctricas': ('electricas', 'Eléctricas'),
+    'Herramientas manuales': ('manuales', 'Manuales'),
+    'Fijaciones y adhesivos': ('fijaciones', 'Fijaciones'),
+    'Pinturas y terminaciones': ('pinturas', 'Pinturas'),
+    'Seguridad industrial': ('seguridad', 'Seguridad'),
+    'Construcción': ('construccion', 'Construcción'),
+    'Electricidad': ('electricidad', 'Electricidad'),
+    'Gasfitería': ('gasfiteria', 'Gasfitería'),
+}
+
+
+def preparar_producto(producto):
+    """Agrega valores de presentación sin modificar el JSON original."""
+    slug_categoria, nombre_corto = CATEGORIAS[producto['categoria']]
+    return {
+        **producto,
+        'slug_categoria': slug_categoria,
+        'categoria_corta': nombre_corto,
+        'precio_formateado': f"${producto['precio']:,}".replace(',', '.'),
+        'disponible': producto['stock'] > 0,
+    }
+
 
 def lista_productos(request):
-    return render(request, 'catalogo/lista.html', {'productos': PRODUCTOS})
+    productos = [preparar_producto(producto) for producto in PRODUCTOS]
+    resumen = {
+        'total': len(PRODUCTOS),
+        'con_stock': sum(producto['stock'] > 0 for producto in PRODUCTOS),
+        'sin_stock': sum(producto['stock'] == 0 for producto in PRODUCTOS),
+        'categorias': len(CATEGORIAS),
+    }
+    categorias = [
+        {
+            'nombre': nombre_corto,
+            'slug': slug,
+            'cantidad': sum(
+                producto['categoria'] == nombre for producto in PRODUCTOS
+            ),
+        }
+        for nombre, (slug, nombre_corto) in CATEGORIAS.items()
+    ]
+    contexto = {
+        'productos': productos,
+        'resumen': resumen,
+        'categorias': categorias,
+    }
+    return render(request, 'catalogo/lista.html', contexto)
 
 
 def detalle_producto(request, producto_id):
@@ -64,4 +109,8 @@ def detalle_producto(request, producto_id):
     )
     if producto is None:
         raise Http404('El producto solicitado no existe.')
-    return render(request, 'catalogo/detalle.html', {'producto': producto})
+    return render(
+        request,
+        'catalogo/detalle.html',
+        {'producto': preparar_producto(producto)},
+    )
