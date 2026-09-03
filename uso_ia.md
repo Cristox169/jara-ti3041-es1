@@ -54,20 +54,8 @@
 
 ## Parte 2 - Explicación personal del proceso
 
-> **Importante:** esta parte debe ser escrita por Cristobal Jara con sus propias palabras, tal como exige la pauta. Antes de entregar, reemplaza las 15 líneas siguientes por un relato personal coherente con el repositorio. No copies el registro anterior ni pidas a una IA que redacte esta sección.
+Fue un proyecto desafiante en el cual ni siquiera podia correr Django en mi equipo, por lo tanto me di la labor de investigar y descubri que las variables de entorno en ocasiones dan multiples problemas, sobre todo con Java, pero no es el caso. Como llevo utilzando este euqipo sin formatear desde inicio de la carrera iba a ser un caos solucionar los conflictos con las variables de entorno. En su lugar encontre la forma de crear entornos aislados utilizables solo para el proyecto, asi di con los .venv que me permitieron instalar las dependencias localmente en la carpeta del proyecto sin tener que batallar con los distintos vestigios de mis años de carrera pasados.
 
-1. 
-2. 
-3. 
-4. 
-5. 
-6. 
-7. 
-8. 
-9. 
-10. 
-11. 
-12. 
-13. 
-14. 
-15. 
+Una vez con Django corriendo la vida fue mas facil, comenze a desarrollar los distintos layout requeridos para esta primera etapa, css siempre es un desafio por sus diferentes gerarquias, pero afortunadamente pudo ser sorteado ccon problemas minimos. Al continuar trabajando, pese a los cambios de plataforma, me refiero a que siempre hemos programado localmente y ahora estando en una aplicacion web las librerias continuan siendo las mismas, incluso nuestro buen amigo os, con la cual pude acceder a las direcciones fisicas en las cuales crearia y se almacenarian los archivos json.
+
+Debo confesar que jamas habia entendido el uso del try y catch hasta ahora. El try es un intento por alcanzar u obtener algo, y en caso que no pueda se encuentran ahi los catch que brindan apoyo en caso que no sea alcanzable el objetivo. Explicado de otra forma si intentaramos saltar desde el sexto piso de Inacap con afan de volar, obviamente no podriamos. Pero abajo se encontrara el catch para hacer de red de seguridad para que asi tanto mi vida como el programa no se cuelguen. En Python no se llama catch la instruccion inclusive tiene una arista mas qque seria finally, para dejarlo totalmente claro podriamos decir que en nuestro finally habran felicitaciones por ejemplo si salto y logro volar habran felicitaciones, en contraste si salto y no logro volar estara  mi red de seguridad llamado Except/catch que me protejera de la caida y igualmente estaran las felicitaciones alojadas en el finally, no por haber volado, pero si por tener la valentia de saltar.
