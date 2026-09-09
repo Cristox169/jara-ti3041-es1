@@ -13,7 +13,9 @@ Proyecto individual para la Evaluación Sumativa 1 de Programación Back End (TI
 - Landing con una frase fuerza y acceso directo al flujo de venta.
 - Punto de venta interactivo con búsqueda, filtros, carro y control de cantidades.
 - Comprobante visual con animación ficticia de impresión al terminar la compra.
-- Iconos SVG locales e imagen original de portada.
+- Iconos SVG locales, imagen original de portada y 40 fotografías o ilustraciones de producto.
+- Imágenes WebP integradas como Base64: catálogo autocontenido, sin solicitudes externas al navegar.
+- Fuentes, autoría y licencias registradas en `docs/fuentes_imagenes.md`.
 - Ocho pruebas automatizadas.
 - Cinco etapas documentadas con capturas en `docs/evidencias/`.
 
@@ -57,7 +59,10 @@ catalogo/
 └── views.py                # JSON, cálculos, listado y detalle
 docs/
 ├── commits.md              # Relato visual de las cinco etapas
-└── evidencias/             # Pantallazos versionados
+├── evidencias/             # Pantallazos y hoja de contacto versionados
+└── fuentes_imagenes.md     # Procedencia y licencia de las 40 imágenes
+scripts/
+└── importar_imagenes_commons.py  # Importador reproducible desde Wikimedia Commons
 uso_ia.md                   # Registro de consultas y sección personal
 ```
 

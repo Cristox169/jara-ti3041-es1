@@ -36,3 +36,9 @@ Se completaron el registro de consultas a IA, la guía de ejecución, el índice
 
 ![Entrega final - Aplicación verificada](evidencias/05-entrega-final.png)
 
+## Evidencia adicional - catálogo visual autocontenido
+
+Se buscaron 40 imágenes abiertas en Wikimedia Commons, se revisó visualmente su correspondencia con el inventario y se integraron como WebP en Base64. La siguiente hoja de contacto permite comprobar de una sola vez que cada id tiene una imagen propia; la autoría y licencia están detalladas en `fuentes_imagenes.md`.
+
+![Hoja de contacto de las 40 imágenes Base64](evidencias/06-productos-base64-contacto.jpg)
+

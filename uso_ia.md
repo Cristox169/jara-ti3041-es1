@@ -62,6 +62,16 @@
 
 **Qué usé o modifiqué:** Se incorporó la frase “Todo para construir. En un solo lugar.” en la portada, un acceso visible a la caja y la ruta `/punto-de-venta/`. La interacción se implementó en JavaScript sin pagos ni persistencia, y el comprobante se presenta como una simulación académica. También se agregaron dos pruebas para verificar la nueva vista y sus controles.
 
+### Consulta 7 - Imágenes autocontenidas para los productos
+
+**Prompt textual:**
+
+> El punto de venta no debe tener landing page, solo el sitio principal. Realiza scraping para encontrar imágenes para cada uno de los productos y usa Base64 para que sea autocontenido.
+
+**Resumen de la respuesta:** La IA eliminó el bloque tipo landing del punto de venta y buscó una imagen abierta para cada uno de los 40 artículos mediante la API de Wikimedia Commons. Las imágenes se normalizaron, comprimieron en WebP y se incrustaron como URI Base64 para evitar dependencias externas durante la navegación.
+
+**Qué usé o modifiqué:** Se conservaron la portada y su frase fuerza únicamente en el inicio. El POS ahora abre directamente en su barra operativa, búsqueda, filtros, productos y carro. Las imágenes se incorporaron al listado, al detalle y a la caja; además se guardaron una hoja de contacto, el importador reproducible y una tabla con autoría, URL y licencia.
+
 ## Parte 2 - Explicación personal del proceso
 
 Fue un proyecto desafiante en el cual ni siquiera podia correr Django en mi equipo, por lo tanto me di la labor de investigar y descubri que las variables de entorno en ocasiones dan multiples problemas, sobre todo con Java, pero no es el caso. Como llevo utilzando este euqipo sin formatear desde inicio de la carrera iba a ser un caos solucionar los conflictos con las variables de entorno. En su lugar encontre la forma de crear entornos aislados utilizables solo para el proyecto, asi di con los .venv que me permitieron instalar las dependencias localmente en la carpeta del proyecto sin tener que batallar con los distintos vestigios de mis años de carrera pasados.

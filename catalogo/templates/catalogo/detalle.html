@@ -10,6 +10,8 @@
 
     <article class="detail-card glass-card{% if not producto.disponible %} is-unavailable{% endif %}">
       <div class="detail-visual category-{{ producto.slug_categoria }}">
+        <img class="detail-photo" src="{{ producto.imagen_base64 }}" alt="{{ producto.nombre }}">
+        <span class="detail-shade" aria-hidden="true"></span>
         <span class="detail-code">CRS-{{ producto.id|stringformat:'03d' }}</span>
         <span class="detail-icon">{% include 'catalogo/includes/icono_categoria.html' %}</span>
         <span class="detail-category">{{ producto.categoria_corta }}</span>

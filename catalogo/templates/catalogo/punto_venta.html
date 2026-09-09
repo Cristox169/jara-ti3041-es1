@@ -5,25 +5,20 @@
 {% block body_class %}pos-page{% endblock %}
 
 {% block content %}
-  <section class="pos-hero">
-    <div class="container pos-hero-inner">
-      <div>
-        <span class="eyebrow"><i></i> Caja {{ caja }} · Venta rápida</span>
-        <h1>Construye la compra.<br><em>Nosotros hacemos el resto.</em></h1>
-        <p>Busca, filtra y selecciona productos para preparar una venta en segundos.</p>
-      </div>
-      <div class="pos-session-card" aria-label="Estado de la caja">
-        <span class="pos-session-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M5 12.5 9.2 17 19 7"></path></svg>
-        </span>
-        <span><small>Estado de caja</small><strong>Abierta y disponible</strong></span>
-      </div>
-    </div>
-  </section>
-
   <section class="container pos-workspace">
     <div class="pos-catalog-panel">
       <div class="pos-controls glass-card">
+        <div class="pos-toolbar-heading">
+          <div>
+            <span class="eyebrow"><i></i> Caja {{ caja }} · Venta rápida</span>
+            <h1>Punto de venta</h1>
+            <p>Selecciona productos para preparar la compra.</p>
+          </div>
+          <div class="pos-session-card" aria-label="Estado de la caja">
+            <span class="pos-session-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 9.2 17 19 7"></path></svg></span>
+            <span><small>Estado de caja</small><strong>Abierta</strong></span>
+          </div>
+        </div>
         <label class="pos-search-wrap" for="pos-search">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m16.2 16.2 4 4"></path></svg>
           <input id="pos-search" type="search" placeholder="Buscar producto por nombre…" autocomplete="off">
@@ -57,7 +52,10 @@
             aria-label="{% if producto.disponible %}Agregar {{ producto.nombre }} al carro{% else %}{{ producto.nombre }}, agotado{% endif %}"
             {% if not producto.disponible %}disabled{% endif %}
           >
-            <span class="pos-product-icon" aria-hidden="true">{% include 'catalogo/includes/icono_categoria.html' %}</span>
+            <span class="pos-product-photo">
+              <img src="{{ producto.imagen_base64 }}" alt="" loading="lazy" decoding="async">
+              <span class="pos-product-icon" aria-hidden="true">{% include 'catalogo/includes/icono_categoria.html' %}</span>
+            </span>
             <span class="pos-product-copy">
               <small>{{ producto.categoria_corta }}</small>
               <strong>{{ producto.nombre }}</strong>

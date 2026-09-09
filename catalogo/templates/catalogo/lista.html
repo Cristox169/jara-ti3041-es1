@@ -68,8 +68,9 @@
     <div class="product-grid" aria-live="polite">
       {% for producto in productos %}
         <article class="product-card{% if not producto.disponible %} is-unavailable{% endif %}" data-product-card data-category="{{ producto.slug_categoria }}">
-          <div class="product-topline">
-            <span class="product-icon category-{{ producto.slug_categoria }}">{% include 'catalogo/includes/icono_categoria.html' %}</span>
+          <div class="product-image-frame">
+            <img src="{{ producto.imagen_base64 }}" alt="{{ producto.nombre }}" loading="lazy" decoding="async">
+            <span class="product-icon category-{{ producto.slug_categoria }}" aria-hidden="true">{% include 'catalogo/includes/icono_categoria.html' %}</span>
             {% if producto.disponible %}
               <span class="stock-badge in-stock"><i></i> En stock</span>
             {% else %}

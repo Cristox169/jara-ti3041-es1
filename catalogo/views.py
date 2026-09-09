@@ -3,6 +3,8 @@ import json
 from django.http import Http404
 from django.shortcuts import render
 
+from .imagenes_productos import PRODUCT_IMAGE_DATA
+
 
 # Los datos se conservan como JSON dentro de la vista para cumplir el anexo de la ES1.
 PRODUCTOS_JSON = r'''
@@ -73,6 +75,7 @@ def preparar_producto(producto):
         'categoria_corta': nombre_corto,
         'precio_formateado': f"${producto['precio']:,}".replace(',', '.'),
         'disponible': producto['stock'] > 0,
+        'imagen_base64': PRODUCT_IMAGE_DATA[producto['id']],
     }
 
 
