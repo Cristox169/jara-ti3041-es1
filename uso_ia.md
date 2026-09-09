@@ -52,6 +52,16 @@
 
 **Qué usé o modifiqué:** Se añadieron los cálculos a `lista_productos`, el condicional `{% if not producto.disponible %}` a los templates y seis pruebas automáticas. Las capturas se realizaron con el servidor local y quedaron versionadas por etapa.
 
+### Consulta 6 - Landing y punto de venta interactivo
+
+**Prompt textual:**
+
+> Hagamos más evidente el landing page con una frase fuerza que destaque el objetivo del sitio. Genera un carrito de compra estilo punto de venta con productos seleccionables, controles para sumar, restar y eliminar, total destacado, búsqueda, filtros por categoría y un comprobante con una pequeña animación ficticia de impresión.
+
+**Resumen de la respuesta:** La IA propuso reforzar el mensaje principal de CrisSteel y crear una pantalla de caja separada. El punto de venta muestra las 40 fichas, permite buscarlas y filtrarlas, administra las cantidades del carro respetando el stock y genera una boleta visual al finalizar.
+
+**Qué usé o modifiqué:** Se incorporó la frase “Todo para construir. En un solo lugar.” en la portada, un acceso visible a la caja y la ruta `/punto-de-venta/`. La interacción se implementó en JavaScript sin pagos ni persistencia, y el comprobante se presenta como una simulación académica. También se agregaron dos pruebas para verificar la nueva vista y sus controles.
+
 ## Parte 2 - Explicación personal del proceso
 
 Fue un proyecto desafiante en el cual ni siquiera podia correr Django en mi equipo, por lo tanto me di la labor de investigar y descubri que las variables de entorno en ocasiones dan multiples problemas, sobre todo con Java, pero no es el caso. Como llevo utilzando este euqipo sin formatear desde inicio de la carrera iba a ser un caos solucionar los conflictos con las variables de entorno. En su lugar encontre la forma de crear entornos aislados utilizables solo para el proyecto, asi di con los .venv que me permitieron instalar las dependencias localmente en la carpeta del proyecto sin tener que batallar con los distintos vestigios de mis años de carrera pasados.

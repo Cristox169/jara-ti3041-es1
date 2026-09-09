@@ -76,15 +76,8 @@ def preparar_producto(producto):
     }
 
 
-def lista_productos(request):
-    productos = [preparar_producto(producto) for producto in PRODUCTOS]
-    resumen = {
-        'total': len(PRODUCTOS),
-        'con_stock': sum(producto['stock'] > 0 for producto in PRODUCTOS),
-        'sin_stock': sum(producto['stock'] == 0 for producto in PRODUCTOS),
-        'categorias': len(CATEGORIAS),
-    }
-    categorias = [
+def preparar_categorias():
+    return [
         {
             'nombre': nombre_corto,
             'slug': slug,
@@ -94,12 +87,32 @@ def lista_productos(request):
         }
         for nombre, (slug, nombre_corto) in CATEGORIAS.items()
     ]
-    contexto = {
+
+
+def preparar_contexto_catalogo():
+    productos = [preparar_producto(producto) for producto in PRODUCTOS]
+    resumen = {
+        'total': len(PRODUCTOS),
+        'con_stock': sum(producto['stock'] > 0 for producto in PRODUCTOS),
+        'sin_stock': sum(producto['stock'] == 0 for producto in PRODUCTOS),
+        'categorias': len(CATEGORIAS),
+    }
+    return {
         'productos': productos,
         'resumen': resumen,
-        'categorias': categorias,
+        'categorias': preparar_categorias(),
     }
+
+
+def lista_productos(request):
+    contexto = preparar_contexto_catalogo()
     return render(request, 'catalogo/lista.html', contexto)
+
+
+def punto_venta(request):
+    contexto = preparar_contexto_catalogo()
+    contexto['caja'] = '01'
+    return render(request, 'catalogo/punto_venta.html', contexto)
 
 
 def detalle_producto(request, producto_id):

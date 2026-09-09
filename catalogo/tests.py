@@ -40,3 +40,18 @@ class CatalogoViewsTests(TestCase):
 
         self.assertContains(response, 'product-card is-unavailable', count=6)
         self.assertContains(response, 'Agotado', count=6)
+
+    def test_punto_venta_muestra_los_cuarenta_productos(self):
+        response = self.client.get(reverse('catalogo:punto_venta'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context['productos']), 40)
+        self.assertContains(response, 'data-pos-product', count=40)
+        self.assertContains(response, 'Carro de compra')
+
+    def test_punto_venta_incluye_controles_y_comprobante(self):
+        response = self.client.get(reverse('catalogo:punto_venta'))
+
+        self.assertContains(response, 'pos-search')
+        self.assertContains(response, 'Finalizar compra')
+        self.assertContains(response, 'receipt-paper')

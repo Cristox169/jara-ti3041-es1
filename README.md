@@ -10,8 +10,11 @@ Proyecto individual para la Evaluación Sumativa 1 de Programación Back End (TI
 - Resumen calculado: total, productos con stock, agotados y categorías.
 - Destacado condicional de productos sin stock.
 - Filtros por categoría, tema claro/oscuro e interfaz responsive.
+- Landing con una frase fuerza y acceso directo al flujo de venta.
+- Punto de venta interactivo con búsqueda, filtros, carro y control de cantidades.
+- Comprobante visual con animación ficticia de impresión al terminar la compra.
 - Iconos SVG locales e imagen original de portada.
-- Seis pruebas automatizadas.
+- Ocho pruebas automatizadas.
 - Cinco etapas documentadas con capturas en `docs/evidencias/`.
 
 ## Instalación y ejecución
@@ -48,7 +51,7 @@ python manage.py test
 ```text
 catalogo/
 ├── static/catalogo/        # Estilos, scripts, icono e imagen de portada
-├── templates/catalogo/     # Base, listado, detalle e iconos
+├── templates/catalogo/     # Base, listado, detalle, punto de venta e iconos
 ├── tests.py                # Pruebas del catálogo
 ├── urls.py                 # Rutas con nombre
 └── views.py                # JSON, cálculos, listado y detalle
@@ -63,4 +66,4 @@ uso_ia.md                   # Registro de consultas y sección personal
 - [Evidencias de commits](docs/commits.md)
 - [Registro de uso de IA](uso_ia.md)
 
-Antes de presentar la evaluación, el estudiante debe redactar personalmente la Parte 2 de `uso_ia.md`, tal como exige la pauta.
+La Parte 2 de `uso_ia.md` fue redactada personalmente por el estudiante, tal como exige la pauta.
