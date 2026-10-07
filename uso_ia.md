@@ -72,6 +72,46 @@
 
 **Qué usé o modifiqué:** Se conservaron la portada y su frase fuerza únicamente en el inicio. El POS ahora abre directamente en su barra operativa, búsqueda, filtros, productos y carro. Las imágenes se incorporaron al listado, al detalle y a la caja; además se guardaron una hoja de contacto, el importador reproducible y una tabla con autoría, URL y licencia.
 
+### Consulta 8 - Reparación del proyecto ES2 y apertura en el puerto 8000
+
+**Prompt textual:**
+
+> Agrégale al ZIP el enlace `http://127.0.0.1:8000/` y haz que aparezca al ejecutar `python manage.py runserver`. Crea una página para una ferretería que se abra con ese enlace y que cumpla los cambios solicitados en el documento Word y en el PDF.
+
+**Resumen de la respuesta:** La IA revisó la pauta entregada en Word y PDF, inspeccionó el proyecto comprimido y reparó archivos que contenían saltos de línea escritos como texto, lo que impedía iniciar Django. También cambió la ruta principal para que el catálogo de la ferretería se abriera directamente en `/`, conservó las vistas de catálogo, detalle, punto de venta y administración, y unificó la ejecución local en el puerto 8000.
+
+**Qué usé o modifiqué:** Se corrigieron la configuración de Django, las rutas y las dependencias. Además, se agregó un comando `runserver` personalizado que muestra `Sitio principal: http://127.0.0.1:8000/` al iniciar el servidor. Se mantuvieron el modelo de productos, las migraciones, la carga de 40 productos, los filtros, la vista de detalle, el punto de venta y Django Admin. Para que el ZIP pudiera probarse de inmediato se dejó SQLite como configuración predeterminada, con soporte opcional para MariaDB mediante variables de entorno.
+
+### Consulta 9 - Verificación y entrega del ZIP corregido
+
+**Prompt textual:**
+
+> Pásame un ZIP para descargar con lo que hiciste.
+
+**Resumen de la respuesta:** La IA comprobó el proyecto antes de empaquetarlo: ejecutó las validaciones de Django, creó una base de datos limpia, aplicó las migraciones, cargó los 40 productos y verificó que la portada, el detalle de producto, el punto de venta y Django Admin respondieran correctamente. También revisó visualmente la página en tamaños de escritorio y móvil.
+
+**Qué usé o modifiqué:** Se generó un nuevo archivo ZIP sin entornos virtuales ni archivos temporales. Después se extrajo en una carpeta limpia y se volvió a probar para confirmar que la entrega fuera reproducible y que pudiera ejecutarse con `python manage.py runserver`.
+
+### Consulta 10 - Actualización del repositorio de GitHub de ES2
+
+**Prompt textual:**
+
+> Actualiza `https://github.com/Cristox169/CristobalJara-ti3041-es2` con lo que hiciste.
+
+**Resumen de la respuesta:** La IA clonó la versión vigente del repositorio ES2, preservó su configuración de MariaDB y sus módulos existentes, y aplicó únicamente los cambios necesarios para que la tienda se abriera en `http://127.0.0.1:8000/`, para que el servidor mostrara ese enlace y para que la documentación coincidiera con el comportamiento real del proyecto.
+
+**Qué usé o modifiqué:** Se actualizaron las rutas principales, el comando de ejecución, las pruebas y la documentación. Los cambios fueron verificados y publicados en la rama `main` de GitHub mediante el commit `95f53e9`.
+
+### Consulta 11 - Superusuario y botón para Django Admin
+
+**Prompt textual:**
+
+> Crea el superusuario con nombre `admin` y contraseña `jarax`, actualiza el ZIP y agrega en la página un botón que permita acceder a la Administración de Django. Después actualiza el enlace de GitHub.
+
+**Resumen de la respuesta:** La IA creó las credenciales de desarrollo solicitadas, agregó en la navegación de la tienda un botón visible hacia `/admin/` y ajustó el diseño para que funcionara correctamente en escritorio y dispositivos móviles. En el proyecto MariaDB también automatizó la creación o actualización del administrador al cargar los datos iniciales.
+
+**Qué usé o modifiqué:** Se actualizó la base de datos incluida en el ZIP con el usuario `admin`, se modificaron las plantillas y los estilos, y se añadieron pruebas para comprobar el enlace de administración y el acceso del superusuario. En GitHub se amplió el comando de carga inicial para aceptar `DJANGO_SUPERUSER_USERNAME`, `DJANGO_SUPERUSER_EMAIL` y `DJANGO_SUPERUSER_PASSWORD`, con los valores de desarrollo solicitados como predeterminados. Esta actualización se publicó en la rama `main` mediante el commit `c76db0d`.
+
 ## Parte 2 - Explicación personal del proceso
 
 Fue un proyecto desafiante en el cual ni siquiera podia correr Django en mi equipo, por lo tanto me di la labor de investigar y descubri que las variables de entorno en ocasiones dan multiples problemas, sobre todo con Java, pero no es el caso. Como llevo utilzando este euqipo sin formatear desde inicio de la carrera iba a ser un caos solucionar los conflictos con las variables de entorno. En su lugar encontre la forma de crear entornos aislados utilizables solo para el proyecto, asi di con los .venv que me permitieron instalar las dependencias localmente en la carpeta del proyecto sin tener que batallar con los distintos vestigios de mis años de carrera pasados.
